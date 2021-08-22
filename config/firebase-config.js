@@ -1,6 +1,7 @@
 import firebase from 'firebase';
+//import 'firebase/auth';
 
-cosnt firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyDVQ97Sc8bU1X2GxgPpegITBL6yyjuyPBU",
   authDomain: "fullstackr-24906.firebaseapp.com",
   projectId: "fullstackr-24906",

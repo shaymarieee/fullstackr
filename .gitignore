@@ -102,3 +102,10 @@ dist
 
 # TernJS port file
 .tern-port
+
+bundle.js
+
+#config folder
+authMethods.js
+config.js
+firebase-config.js

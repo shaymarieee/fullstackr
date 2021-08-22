@@ -7,10 +7,11 @@ const PORT = 1234;
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
-app.use(express.static(__dirname + '/../client/public'));
+app.use(express.static('client/public'));
 
+// HOMEPAGE LETS GOOOO
 app.get('/', (req, res) => {
-  res.send('WHADDUP BITCH?!?!!??')
+  res.end();
 })
 
 app.listen(PORT, () => {
