@@ -2,3 +2,18 @@ body {
   background: rgb(154, 199, 154);
 }
 
+.container {
+  display: flex;
+  /* align-content: center; */
+  justify-content: column;
+}
+
+.anuthaOne {
+  display: flex;
+  justify-content: center;
+}
+
+.signup {
+  display: flex;
+  justify-content: column;
+}
