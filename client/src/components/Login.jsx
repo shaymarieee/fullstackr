@@ -26,12 +26,13 @@ const Login = (props) => {
 
   return (
     <div className="login">
+      <h1>Login</h1>
       <form onSubmit={(e) => {handleLogin(e)}}>
         <label>Email:</label>
         <input onChange={(e) => {setEmail(e.target.value)}}></input>
         <label>Password:</label>
         <input onChange={(e) => {setPassword(e.target.value)}}></input>
-        <button>Login</button>
+        <button button type="button" class="btn btn-light btn-sm">Login</button>
       </form>
       {/* <button onClick={() => {authClick(googleProvider)}}>Login with Google</button>
       <button onClick={() => {authClick(githubProvider)}}>Login with Github</button> */}

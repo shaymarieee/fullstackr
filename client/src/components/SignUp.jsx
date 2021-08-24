@@ -5,6 +5,7 @@ import firebase from 'firebase';
 
 const SignUp = (props) => {
   const [newEmail, setNewEmail] = useState('');
+  const [newUsername, setNewUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
   const [error, setErrors] = useState("");
 
@@ -16,8 +17,12 @@ const SignUp = (props) => {
       .auth()
       .createUserWithEmailAndPassword(newEmail, newPassword)
       .then(res => {
-        //console.log('HELLOOOO??!?!', res.user)
-        if (res.user) Auth.setLoggedIn(true);
+        if (res.user) {
+          Auth.setLoggedIn(true);
+          return res.user.updateProfile({
+            displayName: newUsername
+          })
+        }
       })
       .catch(e => {
         setErrors(e.message);
@@ -27,12 +32,13 @@ const SignUp = (props) => {
 
   return (
     <div className="signup">
+      <h1>Sign Up!</h1>
       <form onSubmit={(e) => {handleSignUp(e)}}>
-        <label>Email:</label>
-        <input onChange={(e) => {setNewEmail(e.target.value)}}></input>
-        <label>Password:</label>
-        <input onChange={(e) => {setNewPassword(e.target.value)}}></input>
-        <button>Sign Up</button>
+        {/* <label>Email:</label> */}
+        <input type="text" className="form-control" placeholder="email" onChange={(e) => {setNewEmail(e.target.value)}}></input>
+        <input id="username" type="text" className="form-control" placeholder="username" onChange={(e) => {setNewUsername(e.target.value)}}></input>
+        <input type="text" className="form-control" placeholder="password" onChange={(e) => {setNewPassword(e.target.value)}}></input>
+        <button button type="button" className="btn btn-light btn-sm">Sign Up</button>
       </form>
       {/* <button onClick={() => {authClick(googleProvider)}}>Login with Google</button>
       <button onClick={() => {authClick(githubProvider)}}>Login with Github</button> */}

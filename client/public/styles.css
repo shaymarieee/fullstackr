@@ -12,6 +12,10 @@ body {
 }
 
 /*----------- HOME PAGE -----------*/
+/* .homepage {
+  display: flex;
+} */
+
 section {
   height: 100vh;
   display: flex;
@@ -38,7 +42,16 @@ section {
   justify-content: center;
 }
 
+/*------------bootstraaahhppp-------------*/
+
+.form-control {
+  align-items: center;
+  /* margin-left: 300px; */
+  margin-right: 400px;
+}
+
 .signup {
-  display: flex;
-  justify-content: column;
+  /* display: flex;
+  justify-content: column; */
+  align-items: center;
 }
