@@ -1,6 +1,3 @@
-import firebase from 'firebase';
-//import 'firebase/auth';
-
 const firebaseConfig = {
   apiKey: "AIzaSyDVQ97Sc8bU1X2GxgPpegITBL6yyjuyPBU",
   authDomain: "fullstackr-24906.firebaseapp.com",
@@ -11,7 +8,7 @@ const firebaseConfig = {
   measurementId: "G-R34SX89S3Z"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.analytics();
+// firebase.initializeApp(firebaseConfig);
+// firebase.analytics();
 
-export default firebase;
+export default firebaseConfig;

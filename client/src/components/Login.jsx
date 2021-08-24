@@ -1,25 +1,37 @@
 import React from 'react';
+import firebase from 'firebase';
+import { useState, useContext } from 'react';
+import { AuthContext } from '../App.jsx';
 
 const Login = (props) => {
-  const [email, setEmail] = usetState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setErrors] = useState('');
 
-  // const authClick = async (provider) => {
-  //   console.log('hey');
-  //   const res = await socialMediaAuth(provider);
-  // };
-  const handleLogin = (data) => {
-    console.log('dataahhhrrhhdsvsdv', data)
-  }
+  const Auth = useContext(AuthContext);
+
+  const handleForm = e => {
+    e.preventDefault();
+    firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then(res => {
+      if (res.user) Auth.setLoggedIn(true);
+    })
+    .catch(e => {
+      setErrors(e.message);
+    });
+  };
+
 
   return (
     <div className="login">
-      <form>
+      <form onSubmit={(e) => {handleLogin(e)}}>
         <label>Email:</label>
         <input onChange={(e) => {setEmail(e.target.value)}}></input>
         <label>Password:</label>
         <input onChange={(e) => {setPassword(e.target.value)}}></input>
-        <button onSubmit={(e) => {handleLogin({email: email, password: password})}}>Login</button>
+        <button>Login</button>
       </form>
       {/* <button onClick={() => {authClick(googleProvider)}}>Login with Google</button>
       <button onClick={() => {authClick(githubProvider)}}>Login with Github</button> */}
