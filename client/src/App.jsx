@@ -15,13 +15,13 @@ import SignUp from './components/SignUp.jsx';
 
 const App = (props) => {
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(true);
   const [signedUp, setSignedUp] = useState(false);
 
   // useEffect(() => {
   //   //RENDER BBY, RENDER! api calls and stuff go here
   //   console.log('HELLOO ANYONE THERE??')
-  // }, [])
+  // }, []);
 
   return (
     <div className="container">

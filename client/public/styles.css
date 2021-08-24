@@ -3,9 +3,34 @@ body {
 }
 
 .container {
+  /* display: flex;
+  justify-content: column; */
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+  height: 100vh;
+  margin: 0px, 0px, 0px, 0px;
+}
+
+/*----------- HOME PAGE -----------*/
+section {
+  height: 100vh;
   display: flex;
-  /* align-content: center; */
-  justify-content: column;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  scroll-snap-align: start;
+}
+
+.one {
+  background: rgb(116, 116, 192);
+}
+
+.two {
+  background: rgb(196, 137, 137);
+}
+
+.three {
+  background: rgb(233, 219, 181);
 }
 
 .anuthaOne {
