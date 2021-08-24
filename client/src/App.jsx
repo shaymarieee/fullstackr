@@ -19,7 +19,7 @@ firebase.initializeApp(firebaseConfig);
 
 const App = (props) => {
 
-  const [loggedIn, setLoggedIn] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
   const [signedUp, setSignedUp] = useState(true);
 
   // useEffect(() => {

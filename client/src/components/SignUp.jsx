@@ -11,9 +11,33 @@ const SignUp = (props) => {
 
   const Auth = useContext(AuthContext);
 
-  const handleSignUp = (e) => {
-    e.preventDefault();
+  const socialMediaAuth = (provider) => {
     firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((res)=>{
+        return res.user;
+      })
+      .catch((err) =>{
+        return err;
+      })
+  }
+
+  const handleSignUp = (e, provider) => {
+    e.preventDefault();
+    if (provider) {
+      firebase
+      .auth()
+      .signInWithPopup(provider)
+      .then((res) => {
+        console.log(res.user);
+        return res.user;
+      })
+      .catch((err) => {
+        return err;
+      })
+    } else {
+      firebase
       .auth()
       .createUserWithEmailAndPassword(newEmail, newPassword)
       .then(res => {
@@ -28,17 +52,20 @@ const SignUp = (props) => {
         setErrors(e.message);
         console.log(error);
       });
+
+    }
   };
 
   return (
     <div className="signup">
       <h1>Sign Up!</h1>
-      <form onSubmit={(e) => {handleSignUp(e)}}>
+      <form>
         {/* <label>Email:</label> */}
         <input type="text" className="form-control" placeholder="email" onChange={(e) => {setNewEmail(e.target.value)}}></input>
         <input id="username" type="text" className="form-control" placeholder="username" onChange={(e) => {setNewUsername(e.target.value)}}></input>
         <input type="text" className="form-control" placeholder="password" onChange={(e) => {setNewPassword(e.target.value)}}></input>
-        <button button type="button" className="btn btn-light btn-sm">Sign Up</button>
+        <button type="button" className="btn btn-light btn-sm" onClick={(e) => {handleSignUp(e)}}>Sign Up</button>
+        {/* <button type="button" className="btn btn-light btn-sm">Sign Up with Google</button> */}
       </form>
       {/* <button onClick={() => {authClick(googleProvider)}}>Login with Google</button>
       <button onClick={() => {authClick(githubProvider)}}>Login with Github</button> */}

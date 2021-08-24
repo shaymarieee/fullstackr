@@ -10,12 +10,14 @@ const Login = (props) => {
 
   const Auth = useContext(AuthContext);
 
-  const handleForm = e => {
+  const handleLogin = (e) => {
     e.preventDefault();
+    console.log('hi there')
     firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(res => {
+      console.log('meow', res.user)
       if (res.user) Auth.setLoggedIn(true);
     })
     .catch(e => {
@@ -27,12 +29,12 @@ const Login = (props) => {
   return (
     <div className="login">
       <h1>Login</h1>
-      <form onSubmit={(e) => {handleLogin(e)}}>
+      <form>
         <label>Email:</label>
         <input onChange={(e) => {setEmail(e.target.value)}}></input>
         <label>Password:</label>
         <input onChange={(e) => {setPassword(e.target.value)}}></input>
-        <button button type="button" class="btn btn-light btn-sm">Login</button>
+        <button type="button" className="btn btn-light btn-sm" onClick={(e) => {handleLogin(e)}}>Login</button>
       </form>
       {/* <button onClick={() => {authClick(googleProvider)}}>Login with Google</button>
       <button onClick={() => {authClick(githubProvider)}}>Login with Github</button> */}
