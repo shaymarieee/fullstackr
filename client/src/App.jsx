@@ -1,11 +1,11 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { googleProvider, githubProvider } from '../../config/authMethods.js';
-import { Suspense, lazy } from 'react';
-import socialMediaAuth from '../../service/auth.js';
-import { Button } from 'react-bootstrap';
+//import socialMediaAuth from '../../service/auth.js';
 import firebase from 'firebase';
 import firebaseConfig from '../../config/firebase-config.js';
+
+//const axiosCalls = require('./helpers/axiosCalls.js');
+import getBoards from './helpers/axiosCalls.js';
 
 import Login from './components/Login.jsx';
 import HomePage from './components/HomePage.jsx';
@@ -20,12 +20,20 @@ firebase.initializeApp(firebaseConfig);
 const App = (props) => {
 
   const [loggedIn, setLoggedIn] = useState(false);
+  const [user, setUser] = useState('');
   const [signedUp, setSignedUp] = useState(true);
 
-  // useEffect(() => {
-  //   //RENDER BBY, RENDER! api calls and stuff go here
-  //   console.log('HELLOO ANYONE THERE??')
-  // }, []);
+  useEffect(() => {
+    //RENDER BBY, RENDER! api calls and stuff go here
+    console.log('HELLOO ANYONE THERE??');
+    getBoards(user)
+      .then((res) => {
+
+      })
+      .catch((err) => {
+        console.log(err)
+      })
+  }, [user]);
 
 
   return (

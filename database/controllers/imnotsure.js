@@ -1,8 +1,19 @@
-const pool = require('../index.js');
+const { pool } = require('../index.js');
 
 //QUERIES GO HERE??? I GUESS? MODELS JUST FORMAT DATA CORRECT?
-const getSomething = () => {
-  pool.query(`SELECT * FROM tickets`)
+const getUsers = function () {
+  pool.query(`SELECT * FROM users`)
+    .then((data) => {
+      res.send(data.rows)
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+}
+
+
+const getBoards = function () {
+  pool.query(`SELECT * FROM boards`)
     .then((data) => {
       res.send(data.rows)
     })
@@ -12,5 +23,6 @@ const getSomething = () => {
 }
 
 module.exports = {
-  getSomething: getSomething
+  getBoards: getBoards,
+  getUsers: getUsers
 }

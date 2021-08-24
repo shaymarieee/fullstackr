@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../App.jsx';
 
 const Login = (props) => {
@@ -24,7 +24,6 @@ const Login = (props) => {
       setErrors(e.message);
     });
   };
-
 
   return (
     <div className="login">
