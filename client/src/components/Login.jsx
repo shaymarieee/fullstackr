@@ -1,6 +1,6 @@
 import React from 'react';
 import firebase from 'firebase';
-import { useState, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { AuthContext } from '../App.jsx';
 
 const Login = (props) => {
@@ -10,29 +10,32 @@ const Login = (props) => {
 
   const Auth = useContext(AuthContext);
 
-  const handleForm = e => {
+  const handleLogin = (e) => {
     e.preventDefault();
     firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(res => {
-      if (res.user) Auth.setLoggedIn(true);
+      console.log('meow', res.user)
+      if (res.user) {
+        Auth.setLoggedIn(true);
+        Auth.setUser({username: res.user.displayName, email: res.user.email});
+      }
     })
     .catch(e => {
       setErrors(e.message);
     });
   };
 
-
   return (
     <div className="login">
       <h1>Login</h1>
-      <form onSubmit={(e) => {handleLogin(e)}}>
+      <form>
         <label>Email:</label>
         <input onChange={(e) => {setEmail(e.target.value)}}></input>
         <label>Password:</label>
         <input onChange={(e) => {setPassword(e.target.value)}}></input>
-        <button button type="button" class="btn btn-light btn-sm">Login</button>
+        <button type="button" className="btn btn-light btn-sm" onClick={(e) => {handleLogin(e)}}>Login</button>
       </form>
       {/* <button onClick={() => {authClick(googleProvider)}}>Login with Google</button>
       <button onClick={() => {authClick(githubProvider)}}>Login with Github</button> */}
