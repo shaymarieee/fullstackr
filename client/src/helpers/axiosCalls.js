@@ -27,12 +27,12 @@ const getBoards = function (user) {
     url: `${baseUrl, user.username}`
   }
   return axios(config)
-    .then((res) => {
-      return res.data;
-    })
-    .catch((err) => {
-      console.log(err)
-    });
+    // .then((res) => {
+    //   return res.data;
+    // })
+    // .catch((err) => {
+    //   console.log(err)
+    // });
 }
 
 const getTickets = function (boardId) {
