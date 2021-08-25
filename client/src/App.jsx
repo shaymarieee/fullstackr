@@ -30,14 +30,15 @@ const App = (props) => {
   useEffect(() => {
     axiosCalls.getBoards(user)
       .then((res) => {
-        //console.log('AYYEE GOT ME SUM BOARDS', res, user);
+        console.log('AYYEE GOT ME SUM BOARDS', res, user);
         if (res.data[0]) {
           setNoBoards(false);
           setBoards(res.data);
-          setCurrentBoard(res.data[0])
+          setOnHomepage(true);
           // IF WE CLICK ON A BOARD WE'RE NOT ON THE HOMEPAGE ANYMORE
         } else {
           setCurrentBoard({});
+          setOnHomepage(true);
           //RENDER CREATE BOARD STUFF
         }
       })
@@ -48,6 +49,7 @@ const App = (props) => {
 
   useEffect(() => {
     if (currentBoard.id) {
+      setOnHomepage(false);
       axiosCalls.getTickets(currentBoard.id)
       .then((res) => {
         setTickets(res.data);
@@ -65,10 +67,12 @@ const App = (props) => {
       <SideBar currentBoard={currentBoard} setCurrentBoard={setCurrentBoard}/>
       <div className="container">
         <div className="text-center">
-          <h1>FULLSTACKR</h1>
-          <p>greetings fellow human</p>
+          {/* <div className="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom"> */}
+            <h1>FULLSTACKR</h1>
+            <p>greetings fellow human</p>
+          {/* </div> */}
           {/* <Suspense fallback={<div>Loading...</div>}> */}
-          {loggedIn ? (noBoards ? <HomePage setCurrentBoard={setCurrentBoard}/> : <BoardView currentBoard={currentBoard}/>) : (signedUp ? <Login user={user} setUser={setUser}/> : <SignUp user={user} setUser={setUser}/>)}
+          {loggedIn ? (onHomepage ? <HomePage setCurrentBoard={setCurrentBoard} boards={boards}/> : <BoardView currentBoard={currentBoard} tickets={tickets}/>) : (signedUp ? <Login user={user} setUser={setUser}/> : <SignUp user={user} setUser={setUser}/>)}
           <button type="button" className="btn btn-light" onClick={(e) => {setSignedUp(!signedUp)}}>{signedUp ? `Don't have an account?` : `Already have an account?`}</button>
           {/* </Suspense> */}
         </div>

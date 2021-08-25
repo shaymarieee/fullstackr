@@ -1,12 +1,18 @@
 import React from 'react';
 
 const Tickets = (props) => {
-  //HI
-  console.log('look at me', props)
 
   return (
-    <div className="">
-      <p>ticket stuff go here</p>
+    <div className="ticket-container-container">
+      {props.tix.map((ticket) => {
+        return (
+          <div className="ticket-container">
+            <h5>{ticket.title}</h5>
+            <p>{ticket.size}</p>
+            <p>{ticket.description}</p>
+          </div>
+        )
+  })}
     </div>
   )
 }

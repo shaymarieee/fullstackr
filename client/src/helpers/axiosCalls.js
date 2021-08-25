@@ -27,28 +27,24 @@ const getBoards = function (user) {
     url: `${baseUrl, user.username}`
   }
   return axios(config)
-    // .then((res) => {
-    //   return res.data;
-    // })
-    // .catch((err) => {
-    //   console.log(err)
-    // });
 }
 
 const getTickets = function (boardId) {
-  console.log('FEJAFBKDFBD', boardId)
   let config = {
     method: 'get',
     url: `/boards/${boardId}`
   }
   return axios(config)
-  //   .then((res) => {
-  //     console.log('RESPONSE:', res.data)
-  //     return res.data
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   })
 }
 
-export default { newUser, getBoards, getTickets };
+// NEW BOARD
+const newBoard = function (data) {
+  console.log('we made it', user)
+  let config = {
+    method: 'post',
+    url:'/newBoard',
+    data: data
+  }
+}
+
+export default { newUser, getBoards, getTickets, newBoard };

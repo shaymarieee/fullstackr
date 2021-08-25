@@ -2,30 +2,44 @@ import React , { useState, useEffect } from 'react';
 import Tickets from './Tickets.jsx';
 
 const BoardView = (props) => {
-  //console.log(props.currentBoard)
-  //also gonna need ticket props or maybe just make the call here
-  //const [tickets, setTickets] = useState([]);
+  let backlog = [];
+  let inProgress = [];
+  let review = [];
+  let done = [];
 
-  //wait i have to loop thru the ticket statuses and populate each div that way
+  props.tickets.forEach((ticket) => {if (ticket.status === 'backlog') {
+    backlog.push(ticket)
+  } else if (ticket.status === 'in progress') {
+    inProgress.push(ticket)
+  } else if (ticket.status === 'review') {
+    review.push(ticket)
+  } else if (ticket.status === 'done') {
+    done.push(ticket)
+  }
+  });
 
-  // tickets.forEach((ticket) => {
-  //   if (ticket.status)
-  // })
 
   return (
     <div>
-      <h1>{props.currentBoard.name}</h1>
+      <h1 className="board-title">{props.currentBoard.name}</h1>
       <div className="row">
-        <div className="col-md-3 backlog">
-          <h2>Ticket</h2>
+        <div className="col-sm-2 backlog">
+          <h4>Backlog</h4>
+          <Tickets tix={backlog}/>
         </div>
-        <div className="col-md-3 in progress">
+        <div className="col-sm-2 inprogress">
+          <h4>In Progress</h4>
+          <Tickets tix={inProgress}/>
         </div>
-        <div className="col-md-3 staging">
+        <div className="col-sm-2 staging">
+          <h4>Under Review</h4>
+          <Tickets tix={review}/>
         </div>
-        <div className="col-md-3 done">
+        <div className="col-sm-2 done">
+          <h4>Done</h4>
+          <Tickets tix={done}/>
+          </div>
         </div>
-      </div>
     </div>
   )
 };
