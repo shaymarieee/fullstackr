@@ -13,7 +13,7 @@ const newUser = function (user) {
   console.log('here ia m', config.data)
   return axios(config)
     .then((data) => {
-      console.log('hi!', data)
+      console.log('WELCOME!', data)
     })
     .catch((err) => {
       console.log('newusr error', err)
@@ -27,12 +27,13 @@ const getBoards = function (user) {
     url: `${baseUrl, user.username}`
   }
   return axios(config)
-  .then((res) => {
-    console.log('hi!', res.data)
-  })
-  .catch((err) => {
-    console.log(err)
-  });
+    .then((res) => {
+      //console.log('RESPONSE DATA IN GETBOARDS', res.data)
+      return res.data;
+    })
+    .catch((err) => {
+      console.log(err)
+    });
 }
 
 export default { newUser, getBoards };

@@ -9,8 +9,6 @@ const Login = (props) => {
   const [error, setErrors] = useState('');
 
   const Auth = useContext(AuthContext);
-  console.log('CONTEXT', Auth)
-  console.log('PROPS', props)
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -18,10 +16,10 @@ const Login = (props) => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(res => {
-      console.log('meow', res.user)
+      //console.log('meow', res.user)
       if (res.user) {
         Auth.setLoggedIn(true);
-        props.setUser({username: res.user.displayName, email: email});
+        props.setUser({username: email, email: email});
       }
     })
     .catch(e => {

@@ -25,11 +25,13 @@ const newUser = function (req, res) {
 
 // GET USERS' BOARDS ON LOGIN
 const getBoards = function (req, res) {
-  console.log('BUTTS', req.body);
+  //console.log('BUTTS', req.url);
+  let email = req.url.slice(1);
+  console.log('BUTT', email)
   pool.query(`SELECT * FROM boards b
     LEFT JOIN users u
     ON u.id = b.userId
-    WHERE u.username = '${req.body.username}'`)
+    WHERE u.email = '${email}'`)
     .then((data) => {
       console.log('HERE', data.rows);
       res.send(data.rows)

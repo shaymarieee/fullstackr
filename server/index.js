@@ -16,9 +16,9 @@ app.get('/', (req, res) => {
 })
 
 // USERS
-app.get('/:username', query.getUsers);
+app.get('/:username', query.getBoards);
 app.post('/newUser', query.newUser);
-//REDIRECT TO THE USERNAME ENDPOINT
+//REDIRECT TO THE USERNAME ENDPOINT AFTER
 
 
 app.listen(PORT, () => {
