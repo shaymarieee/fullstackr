@@ -51,14 +51,18 @@ const SignUp = (props) => {
   return (
     <div className="signup">
       <h1>Sign Up!</h1>
+      <div className="d-flex justify-content-center">
       <form>
-        {/* <label>Email:</label> */}
-        <input type="text" className="form-control" placeholder="email" onChange={(e) => {setNewEmail(e.target.value)}}></input>
-        <input id="username" type="text" className="form-control" placeholder="username" onChange={(e) => {setNewUsername(e.target.value)}}></input>
-        <input type="text" className="form-control" placeholder="password" onChange={(e) => {setNewPassword(e.target.value)}}></input>
+        <label>Email:</label>
+        <input type="text" onChange={(e) => {setNewEmail(e.target.value)}}></input>
+        <label>Username:</label>
+        <input id="username" type="text" onChange={(e) => {setNewUsername(e.target.value)}}></input>
+        <label>Password:</label>
+        <input type="password" onChange={(e) => {setNewPassword(e.target.value)}}></input>
         <button type="button" className="btn btn-light btn-sm" onClick={(e) => {handleSignUp(e)}}>Sign Up</button>
         {/* <button type="button" className="btn btn-light btn-sm">Sign Up with Google</button> */}
       </form>
+      </div>
       {/* <button onClick={() => {authClick(googleProvider)}}>Login with Google</button>
       <button onClick={() => {authClick(githubProvider)}}>Login with Github</button> */}
     </div>

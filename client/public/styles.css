@@ -1,5 +1,6 @@
 body {
-  background: rgb(154, 199, 154);
+  /* background: rgb(154, 199, 154); */
+  font-family: 'Prompt', sans-serif;
 }
 
 .container {
@@ -21,20 +22,35 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: black;
   scroll-snap-align: start;
 }
 
+.row {
+  background: rgb(189, 189, 189, 0.5);
+  height: 100vh;
+}
+
+.col-md-3 {
+  border-top: 2px solid black;
+  color: black;
+  margin: 15px;
+}
+
 .one {
-  background: rgb(116, 116, 192);
+  /* background: rgb(116, 116, 192); */
 }
 
 .two {
-  background: rgb(196, 137, 137);
+  /* background: rgb(196, 137, 137); */
 }
 
 .three {
-  background: rgb(233, 219, 181);
+  /* background: rgb(233, 219, 181); */
+}
+
+button {
+  margin: 10px;
 }
 
 .anuthaOne {
@@ -42,16 +58,23 @@ section {
   justify-content: center;
 }
 
+input {
+  outline: black;
+}
+
 /*------------bootstraaahhppp-------------*/
+
+form {
+  max-width: 200px;
+  align-items: center;
+  margin: 0px;
+}
 
 .form-control {
   align-items: center;
-  /* margin-left: 300px; */
-  margin-right: 400px;
 }
 
 .signup {
-  /* display: flex;
-  justify-content: column; */
-  align-items: center;
+  /* background: yellow;
+  align-items: center; */
 }

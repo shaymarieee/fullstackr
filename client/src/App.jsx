@@ -9,6 +9,7 @@ import Login from './components/Login.jsx';
 import HomePage from './components/HomePage.jsx';
 import SignUp from './components/SignUp.jsx';
 import SideBar from './components/SideBar.jsx';
+import BoardView from './components/BoardView.jsx';
 
 export const AuthContext = React.createContext(null);
 
@@ -49,7 +50,6 @@ const App = (props) => {
     if (currentBoard.id) {
       axiosCalls.getTickets(currentBoard.id)
       .then((res) => {
-        //console.log('OMFG', res);
         setTickets(res.data);
         console.log('tickets', res.data)
       })
@@ -65,9 +65,10 @@ const App = (props) => {
       <SideBar currentBoard={currentBoard} setCurrentBoard={setCurrentBoard}/>
       <div className="container">
         <div className="text-center">
-          <h1>greetings fellow human</h1>
+          <h1>FULLSTACKR</h1>
+          <p>greetings fellow human</p>
           {/* <Suspense fallback={<div>Loading...</div>}> */}
-          {loggedIn ? (onBoardView ? <BoardView/> : <HomePage currentBoard={currentBoard} setCurrentBoard={setCurrentBoard}/>) : (signedUp ? <Login user={user} setUser={setUser}/> : <SignUp user={user} setUser={setUser}/>)}
+          {loggedIn ? (noBoards ? <HomePage setCurrentBoard={setCurrentBoard}/> : <BoardView currentBoard={currentBoard}/>) : (signedUp ? <Login user={user} setUser={setUser}/> : <SignUp user={user} setUser={setUser}/>)}
           <button type="button" className="btn btn-light" onClick={(e) => {setSignedUp(!signedUp)}}>{signedUp ? `Don't have an account?` : `Already have an account?`}</button>
           {/* </Suspense> */}
         </div>

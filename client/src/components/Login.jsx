@@ -28,17 +28,19 @@ const Login = (props) => {
   };
 
   return (
-    <div className="login">
+    <div>
       <h1>Login</h1>
-      <form>
-        <label>Email:</label>
-        <input onChange={(e) => {setEmail(e.target.value)}}></input>
-        <label>Password:</label>
-        <input onChange={(e) => {setPassword(e.target.value)}}></input>
-        <button type="button" className="btn btn-light btn-sm" onClick={(e) => {handleLogin(e)}}>Login</button>
-      </form>
-      {/* <button onClick={() => {authClick(googleProvider)}}>Login with Google</button>
-      <button onClick={() => {authClick(githubProvider)}}>Login with Github</button> */}
+      <div className="d-flex justify-content-center">
+        <form>
+          <label>Email:</label>
+          <input onChange={(e) => {setEmail(e.target.value)}}></input>
+          <label>Password:</label>
+          <input onChange={(e) => {setPassword(e.target.value)}}></input>
+          <button type="button" className="btn btn-light btn-sm" onClick={  (e) => {handleLogin(e)}}>Login</button>
+        </form>
+        {/* <button onClick={() => {authClick(googleProvider)}}>Login with   Google</button>
+        <button onClick={() => {authClick(githubProvider)}}>Login with   Github</button> */}
+      </div>
     </div>
   );
 }
