@@ -26,6 +26,7 @@ const newUser = function (req, res) {
 // GET USERS' BOARDS ON LOGIN
 const getBoards = function (req, res) {
   let email = req.url.slice(1);
+
   pool.query(`SELECT * FROM boards b
     LEFT JOIN users u
     ON u.id = b.userId
@@ -41,8 +42,7 @@ const getBoards = function (req, res) {
 
 const getTickets = function (req, res) {
   const {boardId} = req.params;
-  //console.log(boardId);
-  console.log('WHATS HAPPENING board id', boardId);
+
   pool.query(`SELECT * FROM tickets t
     LEFT JOIN boards b
     ON t.boardId = b.id

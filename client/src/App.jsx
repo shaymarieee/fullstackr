@@ -29,7 +29,7 @@ const App = (props) => {
   useEffect(() => {
     axiosCalls.getBoards(user)
       .then((res) => {
-        console.log('AYYEE GOT ME SUM BOARDS', res, user);
+        //console.log('AYYEE GOT ME SUM BOARDS', res, user);
         if (res.data[0]) {
           setNoBoards(false);
           setBoards(res.data);
@@ -50,7 +50,8 @@ const App = (props) => {
       axiosCalls.getTickets(currentBoard.id)
       .then((res) => {
         //console.log('OMFG', res);
-        setTickets(res);
+        setTickets(res.data);
+        console.log('tickets', res.data)
       })
       .catch((err) => {
         console.log(err);

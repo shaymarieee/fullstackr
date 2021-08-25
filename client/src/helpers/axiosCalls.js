@@ -42,13 +42,13 @@ const getTickets = function (boardId) {
     url: `/boards/${boardId}`
   }
   return axios(config)
-    .then((res) => {
-      console.log('RESPONSE:', res.data)
-      return res.data
-    })
-    .catch((err) => {
-      console.log(err);
-    })
+  //   .then((res) => {
+  //     console.log('RESPONSE:', res.data)
+  //     return res.data
+  //   })
+  //   .catch((err) => {
+  //     console.log(err);
+  //   })
 }
 
 export default { newUser, getBoards, getTickets };
