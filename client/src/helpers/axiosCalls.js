@@ -28,7 +28,6 @@ const getBoards = function (user) {
   }
   return axios(config)
     .then((res) => {
-      //console.log('RESPONSE DATA IN GETBOARDS', res.data)
       return res.data;
     })
     .catch((err) => {
@@ -36,4 +35,20 @@ const getBoards = function (user) {
     });
 }
 
-export default { newUser, getBoards };
+const getTickets = function (boardId) {
+  console.log('FEJAFBKDFBD', boardId)
+  let config = {
+    method: 'get',
+    url: `/boards/${boardId}`
+  }
+  return axios(config)
+    .then((res) => {
+      console.log('RESPONSE:', res.data)
+      return res.data
+    })
+    .catch((err) => {
+      console.log(err);
+    })
+}
+
+export default { newUser, getBoards, getTickets };

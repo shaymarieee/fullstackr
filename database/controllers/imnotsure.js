@@ -25,19 +25,34 @@ const newUser = function (req, res) {
 
 // GET USERS' BOARDS ON LOGIN
 const getBoards = function (req, res) {
-  //console.log('BUTTS', req.url);
   let email = req.url.slice(1);
-  console.log('BUTT', email)
   pool.query(`SELECT * FROM boards b
     LEFT JOIN users u
     ON u.id = b.userId
     WHERE u.email = '${email}'`)
     .then((data) => {
-      console.log('HERE', data.rows);
-      res.send(data.rows)
+      //console.log('HERE', data.rows);
+      res.send(data.rows);
     })
     .catch((err) => {
       console.log('errrrr', err);
+    })
+}
+
+const getTickets = function (req, res) {
+  const {boardId} = req.params;
+  //console.log(boardId);
+  console.log('WHATS HAPPENING board id', boardId);
+  pool.query(`SELECT * FROM tickets t
+    LEFT JOIN boards b
+    ON t.boardId = b.id
+    WHERE b.id = '${(boardId - 1)}'`)
+    .then((data) => {
+      console.log('YAY TICKETS', data.rows);
+      res.send(data.rows);
+    })
+    .catch((err) => {
+      console.log(err);
     })
 }
 
@@ -45,7 +60,7 @@ const newBoard = function(req, res) {
   pool.query(`INSERT INTO boards (name, userId)
     VALUES ('${req.body.name}', '${req.body.userId}')`)
     .then((data) => {
-      console.log('response???', data.row)
+      //console.log('response???', data.row)
       res.send(data.rows)
     })
 }
@@ -54,5 +69,6 @@ module.exports = {
   getBoards: getBoards,
   getUsers: getUsers,
   newUser: newUser,
-  newBoard: newBoard
+  newBoard: newBoard,
+  getTickets: getTickets
 }

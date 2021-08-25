@@ -20,6 +20,8 @@ const App = (props) => {
   const [loggedIn, setLoggedIn] = useState(false);
   const [user, setUser] = useState({});
   const [signedUp, setSignedUp] = useState(true);
+  const [currentBoard, setCurrentBoard] = useState({});
+  const [tickets, setTickets] = useState([]);
 
   useEffect(() => {
     // RENDER BBY, RENDER! api calls and stuff go here
@@ -27,6 +29,8 @@ const App = (props) => {
       .then((res) => {
         //COMING BACK UNDEFINED BCUZ NOTHINGS THERE AYEEE
         console.log('AYYEE GOT ME SUM BOARDS', res, user);
+        setCurrentBoard(res[0] || {});
+        // axiosCalls.getTickets(res[currentBoard].id)
         if (!res && loggedIn) {
           // TELL THEM TO MAKE A NEW BOARD WOO
         } else {
@@ -35,8 +39,21 @@ const App = (props) => {
       })
       .catch((err) => {
         console.log(err);
-      })
+      });
   }, [user]);
+
+  useEffect(() => {
+    if (currentBoard.id) {
+      axiosCalls.getTickets(currentBoard.id)
+      .then((res) => {
+        console.log('OMFG', res);
+        setTickets(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+    }
+  }, [currentBoard]);
 
 
   return (
