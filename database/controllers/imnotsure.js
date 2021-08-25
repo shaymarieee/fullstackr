@@ -14,7 +14,7 @@ const getUsers = function (req, res) {
 const newUser = function (req, res) {
   console.log('request bod', req.body)
   pool.query(`INSERT INTO users (username, email) VALUES (
-    ${req.body.username}, ${req.body.email})`)
+    '${req.body.username}', '${req.body.email}')`)
     .then((data) => {
       console.log('look data', data);
       res.send(data.rows);
@@ -40,7 +40,14 @@ const newBoard = function(req, res) {
   pool.query(`INSERT INTO boards (name, userId) VALUES (
     //gotta find the user id first and then yeah
   )`)
+    .then((data) => {
+      console.log('response???', data.row)
+      res.send(data.rows)
+    })
 }
+
+//const queries = { getBoards, getUsers, newUser, newBoard };
+
 
 module.exports = {
   getBoards: getBoards,

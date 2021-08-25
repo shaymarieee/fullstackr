@@ -7,9 +7,10 @@ const newUser = function (user) {
   console.log('helper user new', user)
   let config = {
     method: 'post',
-    url:`${baseUrl}newUser`,
+    url:`/newUser`,
     data: user
   }
+  console.log('here ia m', config.data)
   return axios(config)
     .then((data) => {
       console.log('hi!', data)
@@ -26,8 +27,8 @@ const getBoards = function (user) {
     url: `${baseUrl, user.username}`
   }
   return axios(config)
-  .then((data) => {
-    console.log('hi!', data)
+  .then((res) => {
+    console.log('hi!', res.data)
   })
   .catch((err) => {
     console.log(err)

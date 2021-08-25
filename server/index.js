@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 //import controllers
-const { getBoards, getUsers, newUser, newBoard } = require('./../database/controllers/imnotsure.js');
+const query = require('../database/controllers/imnotsure.js');
 
 const app = express();
 const PORT = 1234;
@@ -16,8 +16,8 @@ app.get('/', (req, res) => {
 })
 
 // USERS
-app.get('/:username', getUsers);
-app.get('/newUser', newUser);
+app.get('/:username', query.getUsers);
+app.post('/newUser', query.newUser);
 //REDIRECT TO THE USERNAME ENDPOINT
 
 

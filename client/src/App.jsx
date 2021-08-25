@@ -2,7 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 //import { googleProvider, githubProvider } from '../../config/authMethods.js';
 //import socialMediaAuth from '../../service/auth.js';
 import firebase from 'firebase';
-import firebaseConfig from '../../config.js';
+import { firebaseConfig } from '../../config.js';
 
 import axiosCalls from './helpers/axiosCalls.js';
 import Login from './components/Login.jsx';
@@ -26,8 +26,12 @@ const App = (props) => {
     axiosCalls.getBoards(user)
       .then((res) => {
         //COMING BACK UNDEFINED BCUZ NOTHINGS THERE AYEEE
-        console.log('AYYEE', res);
-        //if the results are empty, prompt to make a new board
+        //console.log('AYYEE', res);
+        if (!res) {
+          // TELL THEM TO MAKE A NEW BOARD WOO
+        } else {
+          //display a list of their boards
+        }
       })
       .catch((err) => {
         console.log(err);
