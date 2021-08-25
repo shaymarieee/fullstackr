@@ -34,7 +34,7 @@ const SignUp = (props) => {
           let user = {username: newUsername, email: newEmail};
           axiosCalls.newUser(user);
           Auth.setLoggedIn(true);
-          Auth.setUser(user);
+          props.setUser(user);
 
           return res.user.updateProfile({
             displayName: newUsername

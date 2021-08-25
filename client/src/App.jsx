@@ -26,8 +26,8 @@ const App = (props) => {
     axiosCalls.getBoards(user)
       .then((res) => {
         //COMING BACK UNDEFINED BCUZ NOTHINGS THERE AYEEE
-        //console.log('AYYEE', res);
-        if (!res) {
+        console.log('AYYEE GOT ME SUM BOARDS', res, user);
+        if (!res && loggedIn) {
           // TELL THEM TO MAKE A NEW BOARD WOO
         } else {
           //display a list of their boards
@@ -36,17 +36,17 @@ const App = (props) => {
       .catch((err) => {
         console.log(err);
       })
-  }, [loggedIn]);
+  }, [user]);
 
 
   return (
-    <AuthContext.Provider value={{ loggedIn, setLoggedIn }}>
+    <AuthContext.Provider value={{loggedIn, setLoggedIn}}>
       <SideBar/>
       <div className="container">
         <div className="text-center">
           <h1>greetings fellow human</h1>
           {/* <Suspense fallback={<div>Loading...</div>}> */}
-          {loggedIn ? <HomePage/> : (signedUp ? <Login/> : <SignUp/>)}
+          {loggedIn ? <HomePage/> : (signedUp ? <Login user={user} setUser={setUser}/> : <SignUp user={user} setUser={setUser}/>)}
           <button type="button" className="btn btn-light" onClick={(e) => {setSignedUp(!signedUp)}}>{signedUp ? `Don't have an account?` : `Already have an account?`}</button>
           {/* </Suspense> */}
         </div>

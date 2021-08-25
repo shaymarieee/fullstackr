@@ -1,6 +1,6 @@
 const { pool } = require('../index.js');
 
-//QUERIES GO HERE??? I GUESS? MODELS JUST FORMAT DATA CORRECT?
+//UNECESSARY LOL
 const getUsers = function (req, res) {
   pool.query(`SELECT * FROM users`)
     .then((data) => {
@@ -11,12 +11,11 @@ const getUsers = function (req, res) {
     })
 }
 
+// CREATE NEW USER
 const newUser = function (req, res) {
-  console.log('request bod', req.body)
   pool.query(`INSERT INTO users (username, email) VALUES (
     '${req.body.username}', '${req.body.email}')`)
     .then((data) => {
-      console.log('look data', data);
       res.send(data.rows);
     })
     .catch((err) => {
@@ -24,11 +23,15 @@ const newUser = function (req, res) {
     })
 }
 
+// GET USERS' BOARDS ON LOGIN
 const getBoards = function (req, res) {
-  console.log('hi', req.body)
-  pool.query(`SELECT * FROM users`)
+  console.log('BUTTS', req.body);
+  pool.query(`SELECT * FROM boards b
+    LEFT JOIN users u
+    ON u.id = b.userId
+    WHERE u.username = '${req.body.username}'`)
     .then((data) => {
-      //console.log('ya made it!!', data)
+      console.log('HERE', data.rows);
       res.send(data.rows)
     })
     .catch((err) => {
@@ -37,17 +40,13 @@ const getBoards = function (req, res) {
 }
 
 const newBoard = function(req, res) {
-  pool.query(`INSERT INTO boards (name, userId) VALUES (
-    //gotta find the user id first and then yeah
-  )`)
+  pool.query(`INSERT INTO boards (name, userId)
+    VALUES ('${req.body.name}', '${req.body.userId}')`)
     .then((data) => {
       console.log('response???', data.row)
       res.send(data.rows)
     })
 }
-
-//const queries = { getBoards, getUsers, newUser, newBoard };
-
 
 module.exports = {
   getBoards: getBoards,
