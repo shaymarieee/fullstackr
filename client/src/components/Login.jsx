@@ -12,13 +12,15 @@ const Login = (props) => {
 
   const handleLogin = (e) => {
     e.preventDefault();
-    console.log('hi there')
     firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(res => {
       console.log('meow', res.user)
-      if (res.user) Auth.setLoggedIn(true);
+      if (res.user) {
+        Auth.setLoggedIn(true);
+        Auth.setUser({username: res.user.displayName, email: res.user.email});
+      }
     })
     .catch(e => {
       setErrors(e.message);

@@ -1,19 +1,37 @@
 import axios from 'axios';
 
-const baseUrl = 'localhost/';
+const baseUrl = '127.0.0.1/';
 
+// ON SIGN UP
+const newUser = function (user) {
+  console.log('helper user new', user)
+  let config = {
+    method: 'post',
+    url:`${baseUrl}newUser`,
+    data: user
+  }
+  return axios(config)
+    .then((data) => {
+      console.log('hi!', data)
+    })
+    .catch((err) => {
+      console.log('newusr error', err)
+    });
+}
+
+// ON LOGIN
 const getBoards = function (user) {
   let config = {
     method: 'get',
-    url: `localhost/${user}`,
-
-    //do i need authorization?? prob not
+    url: `${baseUrl, user.username}`
   }
-  return axios(config);
+  return axios(config)
+  .then((data) => {
+    console.log('hi!', data)
+  })
+  .catch((err) => {
+    console.log(err)
+  });
 }
 
-// const axiosCalls = {
-//   getBoards: getBoards
-// }
-export default getBoards;
-//module.exports = {getBoards}
+export default { newUser, getBoards };

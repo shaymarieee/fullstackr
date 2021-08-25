@@ -1,12 +1,10 @@
 import React, { useState, useEffect, Suspense, lazy } from 'react';
-import { googleProvider, githubProvider } from '../../config/authMethods.js';
+//import { googleProvider, githubProvider } from '../../config/authMethods.js';
 //import socialMediaAuth from '../../service/auth.js';
 import firebase from 'firebase';
-import firebaseConfig from '../../config/firebase-config.js';
+import firebaseConfig from '../../config.js';
 
-//const axiosCalls = require('./helpers/axiosCalls.js');
-import getBoards from './helpers/axiosCalls.js';
-
+import axiosCalls from './helpers/axiosCalls.js';
 import Login from './components/Login.jsx';
 import HomePage from './components/HomePage.jsx';
 import SignUp from './components/SignUp.jsx';
@@ -20,20 +18,21 @@ firebase.initializeApp(firebaseConfig);
 const App = (props) => {
 
   const [loggedIn, setLoggedIn] = useState(false);
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState({});
   const [signedUp, setSignedUp] = useState(true);
 
   useEffect(() => {
-    //RENDER BBY, RENDER! api calls and stuff go here
-    console.log('HELLOO ANYONE THERE??');
-    getBoards(user)
+    // RENDER BBY, RENDER! api calls and stuff go here
+    axiosCalls.getBoards(user)
       .then((res) => {
-
+        //COMING BACK UNDEFINED BCUZ NOTHINGS THERE AYEEE
+        console.log('AYYEE', res);
+        //if the results are empty, prompt to make a new board
       })
       .catch((err) => {
-        console.log(err)
+        console.log(err);
       })
-  }, [user]);
+  }, [loggedIn]);
 
 
   return (

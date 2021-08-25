@@ -2,26 +2,15 @@ import React from 'react';
 import { useState, useContext } from 'react';
 import { AuthContext } from '../App.jsx';
 import firebase from 'firebase';
+import axiosCalls from '../helpers/axiosCalls.js';
 
 const SignUp = (props) => {
   const [newEmail, setNewEmail] = useState('');
   const [newUsername, setNewUsername] = useState('');
   const [newPassword, setNewPassword] = useState('');
-  const [error, setErrors] = useState("");
+  const [error, setErrors] = useState('');
 
   const Auth = useContext(AuthContext);
-
-  const socialMediaAuth = (provider) => {
-    firebase
-      .auth()
-      .signInWithPopup(provider)
-      .then((res)=>{
-        return res.user;
-      })
-      .catch((err) =>{
-        return err;
-      })
-  }
 
   const handleSignUp = (e, provider) => {
     e.preventDefault();
@@ -42,7 +31,11 @@ const SignUp = (props) => {
       .createUserWithEmailAndPassword(newEmail, newPassword)
       .then(res => {
         if (res.user) {
+          let user = {username: newUsername, email: newEmail};
+          axiosCalls.newUser(user);
           Auth.setLoggedIn(true);
+          Auth.setUser(user);
+
           return res.user.updateProfile({
             displayName: newUsername
           })
@@ -52,7 +45,6 @@ const SignUp = (props) => {
         setErrors(e.message);
         console.log(error);
       });
-
     }
   };
 
