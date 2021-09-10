@@ -8,7 +8,7 @@ const SideBar = (props) => {
       <div className="d-flex flex-column flex-shrink-0 text-black bg-dark" style={{width: "200px", height: "700px", float: "left", borderRadius: "0px"}}>
         <ul className="nav nav-pills nav-flush flex-column mb-auto text-center">
           <li className="nav-item">
-            <a href="#" className="nav-link active bg-dark">
+            <a onClick={() => {props.setOnHomepage(true)}} href="#" className="nav-link active bg-dark">
               Home
             </a>
           </li>
@@ -20,6 +20,11 @@ const SideBar = (props) => {
           <li className="nav-item">
             <a href="#" className="nav-link active bg-dark">
               Engineering Buddies
+            </a>
+          </li>
+          <li className="nav-item">
+            <a onClick={() => {props.setLoggedIn(false)}} href="#" className="nav-link active bg-dark">
+              Log Out
             </a>
           </li>
         </ul>

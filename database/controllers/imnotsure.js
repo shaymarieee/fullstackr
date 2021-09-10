@@ -42,10 +42,11 @@ const getBoards = function (req, res) {
 
 const getTickets = function (req, res) {
   const {boardId} = req.params;
+  console.log('ova here', boardId)
 
   pool.query(`SELECT * FROM tickets t
     LEFT JOIN boards b
-    ON t.boardId = b.id
+    ON b.id = t.boardId
     WHERE b.id = '${(boardId - 1)}'`)
     .then((data) => {
       console.log('YAY TICKETS', data.rows);

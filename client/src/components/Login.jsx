@@ -16,7 +16,6 @@ const Login = (props) => {
     .auth()
     .signInWithEmailAndPassword(email, password)
     .then(res => {
-      //console.log('meow', res.user)
       if (res.user) {
         Auth.setLoggedIn(true);
         props.setUser({username: email, email: email});
@@ -35,7 +34,7 @@ const Login = (props) => {
           <label>Email:</label>
           <input onChange={(e) => {setEmail(e.target.value)}}></input>
           <label>Password:</label>
-          <input onChange={(e) => {setPassword(e.target.value)}}></input>
+          <input type="password" onChange={(e) => {setPassword(e.target.value)}}></input>
           <button type="button" className="btn btn-light btn-sm" onClick={  (e) => {handleLogin(e)}}>Login</button>
         </form>
         {/* <button onClick={() => {authClick(googleProvider)}}>Login with   Google</button>

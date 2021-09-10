@@ -7,12 +7,14 @@ const Tickets = (props) => {
       {props.tix.map((ticket) => {
         return (
           <div className="ticket-container">
-            <h5>{ticket.title}</h5>
-            <p>{ticket.size}</p>
+            <div className="t-header">
+              <h5>{ticket.title}</h5>
+              <p>{ticket.size}</p>
+            </div>
             <p>{ticket.description}</p>
           </div>
         )
-  })}
+      })}
     </div>
   )
 }
